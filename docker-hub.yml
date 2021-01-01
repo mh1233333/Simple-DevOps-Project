@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: building docker image
+    command: docker build -t simple-devops-image .
+    args:
+      chdir: /opt/docker
+
+  - name: creating tag to image
+    command: docker tag simple-devops-image mydokcer111/simple-devops-image
+
+  - name: push image to docker hub
+    command: docker push mydokcer111/simple-devops-image
